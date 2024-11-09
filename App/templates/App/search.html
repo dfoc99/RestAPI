@@ -1,0 +1,93 @@
+{% extends "App/layout.html" %}
+{% block title %}
+Search
+{% endblock %}
+{% block content %}
+
+<style>
+    h1 {
+      font-size: 23px;
+    }
+  </style>
+<style>
+    table {
+    width: 20%; /* Adjust the width as needed */
+    max-width: 30px; /* Set a maximum width if desired */
+    height: auto; /* Adjust the height as needed */
+}
+</style>
+
+<div class="row">
+    <center>
+
+        <h1>Searching for data in the diseaseAttributes table</h1>
+
+        <div class="col">
+            <div class="card card-body">
+                <form method="get">
+
+                    <label for="id_type"></label>
+                    <select id="id_type" name="type" placeholder="All types...">
+                        <option value="">-- Select Type --</option>
+                        {% for type in types %}
+                        <option value="{{type}}">{{ type }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="id_name"></label>
+                    <input type="text" id="id_name" name="diseasename" value="{{ myFilter.form.data.diseasename }}" placeholder="Enter disease name...">
+                    <!-- if myFilter.form.data.name instead of myFilter.form.data.diseasename, the search box would clean the user input -->
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </center>
+</div>
+
+
+
+<hr>
+
+<body>
+    <center>
+        <table border="1">
+            <tr>
+                <th>Disease ID</th>
+                <th>Name</th>
+                <th>Type</th>
+            </tr>
+            {% for instance in page_obj %}
+            <tr>
+                <td>{{instance.diseaseid}}</td>
+                <td>{{instance.diseasename}}</td>
+                <td>{{instance.type}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+
+<br/></br/>
+
+<!-- Pagination and filtering combining -->
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page=1&type={{ myFilter.form.data.type }}&diseasename={{ myFilter.form.data.diseasename }}">&laquo; First</a>
+        <a href="?page={{ page_obj.previous_page_number }}&type={{ myFilter.form.data.type }}&diseasename={{ myFilter.form.data.diseasename }}">Previous</a>
+    {% else %}
+        <span class="disabled">&laquo; First</span>
+        <span class="disabled">Previous</span>
+    {% endif %}
+
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}&type={{ myFilter.form.data.type }}&diseasename={{ myFilter.form.data.diseasename }}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}&type={{ myFilter.form.data.type }}&diseasename={{ myFilter.form.data.diseasename }}">Last &raquo;</a>
+    {% else %}
+        <span class="disabled">Next</span>
+        <span class="disabled">Last &raquo;</span>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+{
+    
+    "python.analysis.extraPaths": ["./sources"],
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.diagnosticSeverityOverrides": {
+        
+    }
+}

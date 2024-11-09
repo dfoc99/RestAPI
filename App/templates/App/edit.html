@@ -1,0 +1,91 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Index</title>  
+    {% load static %}  
+    <link rel="stylesheet" type="text/css" href="{% static 'App/site_CRUD.css' %}"/>  
+</head>  
+
+<body>  
+  <form method="POST" class="post-form" action="/update/{{ cliente.id_client }}">
+    {% csrf_token %}
+    
+    <div class="container">
+        <h3>Update Cliente Details</h3>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">ID:</label>
+            <input type="text" name="id_client" id="id_client" required maxlength="30" value="{{ cliente.id_client }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Nome Completo:</label>
+            <input type="text" name="fname" id="fname" required maxlength="254" value="{{ cliente.fname }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Género:</label>
+            <input type="text" name="gender" id="gender" required maxlength="10" value="{{ cliente.get_gender_display }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Ano:</label>
+            <input type="text" name="age" id="age" required maxlength="3" value="{{ cliente.age }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Data de Nascimento:</label>
+            <input type="text" name="bdate" id="bdate" required maxlength="10" value="{{ cliente.bdate }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Local de Nascimento:</label>
+            <input type="text" name="local_bdate" id="local_bdate" required maxlength="100" value="{{ cliente.local_bdate }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Hora de Nascimento:</label>
+            <input type="text" name="hour_bdate" id="hour_bdate" required maxlength="5" value="{{ cliente.hour_bdate }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Endereço:</label>
+            <input type="text" name="address" id="address" required maxlength="254" value="{{ cliente.address }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Estado Civil:</label>
+            <input type="text" name="civil_state" id="civil_state" required maxlength="20" value="{{ cliente.civil_state }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Filhos:</label>
+            <input type="text" name="children" id="children" required maxlength="3" value="{{ cliente.children }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Observações:</label>
+            <input type="text" name="obs" id="obs" maxlength="500" value="{{ cliente.obs }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Profissão:</label>
+            <input type="text" name="prof" id="prof" required maxlength="100" value="{{ cliente.prof }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="custom-label-spacing">Contacto:</label>
+            <input type="text" name="contact" id="contact" required maxlength="15" value="{{ cliente.contact }}"/>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <button type="submit" class="btn">Update</button>
+            </div>
+        </div>
+    </div>
+</form>  
+</body>  
+  
+</html>  
