@@ -12,7 +12,6 @@ portalocker==2.10.1
 pyodbc==5.2.0
 python-dotenv==1.0.1
 pytz==2024.2
-pywin32==308
 sqlparse==0.5.1
 tzdata==2024.2
 uvicorn==0.32.0
